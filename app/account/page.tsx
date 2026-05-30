@@ -46,7 +46,6 @@ export default async function AccountPage() {
     site_name: "ShopKart",
     logo_url: null,
     meta_title: "ShopKart",
-    meta_desc: "Shop authentic Rudraksha, gemstones, malas, and spiritual essentials.",
     meta_desc: "ShopKart brings you unbeatable prices across electronics, fashion, and more.",
     og_image: null,
     ga_id: null,
