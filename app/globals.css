@@ -1,0 +1,296 @@
+/* ====================================================
+ * TECHPOTLI E-COM ENGINE — globals.css
+ * ====================================================
+ * HOW TO REBRAND IN 10 SECONDS (Cursor AI prompt):
+ *
+ * "Change --brand-primary to #FF6B00 and update
+ *  --brand-primary-hover to a darker shade"
+ *
+ * CSS VARIABLE GUIDE:
+ * --brand-primary      → Buttons, links, accents
+ * --brand-primary-hover → Hover states on buttons
+ * --brand-accent       → Sale/discount badges
+ * --brand-whatsapp     → WhatsApp CTA button
+ *
+ * shadcn VARIABLES (change for full theme swap):
+ * --background         → Page background
+ * --foreground         → Main text
+ * --primary            → shadcn primary (keep same as brand-primary)
+ * --muted-foreground   → Secondary text
+ * ==================================================== */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Reference-style storefront background (Flipkart-like cool white) */
+    --background: 214 100% 98%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    /* Flipkart-style primary blue */
+    --primary: 217 87% 55%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 214 78% 96%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 214 38% 94%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 48 100% 88%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 214 30% 86%;
+    --input: 214 30% 86%;
+    --ring: 217 87% 55%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.6rem;
+
+    /* ================================================
+     * TECHPOTLI BRAND VARIABLES
+     * INTERN: Change ONLY these values to rebrand
+     * Tool: Cursor prompt "change brand color to #HEXCODE"
+     * ================================================ */
+    --brand-primary: #2874f0;
+    --brand-primary-hover: #1f5ec9;
+    --brand-accent: #ffcc00;
+    --brand-whatsapp: #25d366;
+    --brand-success: #10b981;
+    --brand-coral: #2563eb;
+    --brand-violet: #4f46e5;
+    --brand-sky: #0ea5e9;
+
+    /* Luxe surfaces */
+    --shadow-soft: 0 10px 28px rgba(30, 64, 175, 0.09);
+    --shadow-card: 0 18px 46px rgba(30, 64, 175, 0.15);
+    --admin-shadow: 0 16px 45px rgba(37, 99, 235, 0.1);
+    --admin-border: rgba(37, 99, 235, 0.18);
+
+    /* Typography scale */
+    --text-hero: clamp(1.5rem, 5vw, 3rem);
+    --text-heading: clamp(1.25rem, 3vw, 2rem);
+    --text-subheading: clamp(1rem, 2vw, 1.5rem);
+  }
+  .dark {
+    /* Dark mode remains available, but is no longer the default */
+    --background: 222 20% 10%;
+    --foreground: 0 0% 98%;
+    --card: 222 18% 12%;
+    --card-foreground: 0 0% 98%;
+    --popover: 222 18% 12%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html {
+    /* Native cross-document smoothness on supporting browsers */
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    background:
+      radial-gradient(circle at top left, rgba(40, 116, 240, 0.16), transparent 24rem),
+      radial-gradient(circle at top right, rgba(255, 204, 0, 0.14), transparent 24rem),
+      linear-gradient(180deg, #ffffff 0%, #f5f9ff 46%, #edf4ff 100%);
+  }
+}
+
+/* Tiny crossfade on every route change so users never see a "blink".
+ * Pairs with Next.js loading.tsx skeletons to feel preloaded.
+ * NOTE: opacity-only (no transform) so we don't promote the entire
+ * tree to a new compositing layer on every navigation — that was
+ * causing visible stutter on slow phones. */
+@keyframes page-fade-in {
+  from { opacity: 0.4; }
+  to   { opacity: 1; }
+}
+@layer utilities {
+  .page-fade {
+    animation: page-fade-in 180ms ease-out both;
+    will-change: opacity;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-fade,
+  .admin-enter {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@keyframes admin-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes offer-ticker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@layer utilities {
+  /* Responsive container padding (use instead of repeating px-5 everywhere) */
+  .container-pad {
+    @apply mx-auto w-full max-w-[92rem] px-2 sm:px-3 lg:px-4;
+  }
+
+  /* Consistent section spacing */
+  .section-pad {
+    @apply py-3 sm:py-4 lg:py-6;
+  }
+
+  /* Hide scrollbar but allow scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Text truncation */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  /* Horizontal scroll snap container */
+  .scroll-container {
+    @apply flex overflow-x-auto gap-4 snap-x snap-mandatory scrollbar-hide pb-2;
+  }
+  .scroll-item {
+    @apply snap-start flex-shrink-0;
+  }
+
+  /* WhatsApp green */
+  .bg-whatsapp {
+    background-color: var(--brand-whatsapp);
+  }
+
+  /* Luxe card shadow */
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .surface-panel {
+    @apply rounded-[var(--radius)] border border-[#d8e6ff] bg-white/95 backdrop-blur;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .surface-panel-strong {
+    @apply rounded-[calc(var(--radius)+0.3rem)] border border-[#cfe0ff] bg-white shadow-[var(--shadow-card)] backdrop-blur;
+  }
+
+  .section-shell {
+    @apply rounded-[1.1rem] border border-[#d8e6ff] bg-gradient-to-b from-[#ffffff] to-[#eff5ff] p-4 sm:p-5;
+    box-shadow: var(--shadow-soft);
+  }
+
+  .ornate-kicker {
+    @apply text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-primary)];
+  }
+
+  .ornate-title {
+    @apply mt-1 text-[var(--text-subheading)] font-semibold tracking-tight text-slate-900;
+    font-family: Georgia, "Times New Roman", serif;
+  }
+
+  .admin-bg {
+    background:
+      radial-gradient(circle at top left, rgba(40, 116, 240, 0.10), transparent 32rem),
+      linear-gradient(135deg, hsl(var(--background)) 0%, #eef5ff 42%, #f8fbff 100%);
+  }
+
+  .admin-panel {
+    @apply rounded-sm border bg-white/90 shadow-[var(--admin-shadow)] backdrop-blur;
+    border-color: var(--admin-border);
+  }
+
+  .admin-panel-flat {
+    @apply rounded-sm border bg-white shadow-sm;
+    border-color: var(--admin-border);
+  }
+
+  .admin-card-hover {
+    @apply transition-all duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-[0_18px_45px_rgba(37,99,235,0.12)];
+  }
+
+  .admin-section-title {
+    @apply text-xs font-semibold uppercase tracking-[0.18em] text-slate-500;
+  }
+
+  .admin-heading {
+    @apply text-lg font-semibold tracking-tight text-slate-950;
+  }
+
+  .admin-subtle {
+    @apply text-sm text-slate-500;
+  }
+
+  .admin-input {
+    @apply rounded-sm border-slate-200 bg-white shadow-sm focus-visible:ring-primary/25;
+  }
+
+  .admin-list-row {
+    @apply rounded-sm border border-slate-200/80 bg-white p-3 shadow-sm transition-all duration-200 hover:border-primary/30 hover:bg-blue-50/40;
+  }
+
+  .admin-status-pill {
+    @apply inline-flex items-center border border-blue-200 bg-blue-50 px-2.5 py-1 text-xs font-medium uppercase tracking-[0.14em] text-blue-700;
+  }
+
+  .admin-enter {
+    animation: admin-enter 420ms ease both;
+  }
+}
