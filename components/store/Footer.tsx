@@ -5,7 +5,6 @@
 // INTERN NOTE: Edit social URLs in /admin/site (Footer social links).
 // ============================================
 
-import Image from "next/image";
 import Link from "next/link";
 import {
   Facebook,
@@ -18,6 +17,7 @@ import {
 } from "lucide-react";
 import type { BrandSettings, SiteSettings, Category } from "@/types";
 import { getCategories } from "@/utils/store/queries";
+import Image from "next/image";
 
 type Props = { settings: SiteSettings; brand?: BrandSettings | null };
 
@@ -36,7 +36,7 @@ function buildSocials(brand?: BrandSettings | null): SocialLink[] {
       label: "Instagram",
       Icon: Instagram,
       className:
-        "bg-gradient-to-br from-[#2874f0] via-[#1f5ec9] to-[#ffcc00] text-white",
+      "bg-gradient-to-br from-[#6f8f4a] via-[#8a7244] to-[#c98f2c] text-white",
     });
   }
   if (brand?.facebook) {
@@ -44,7 +44,7 @@ function buildSocials(brand?: BrandSettings | null): SocialLink[] {
       href: brand.facebook,
       label: "Facebook",
       Icon: Facebook,
-      className: "bg-[#1877F2] text-white",
+      className: "bg-[#6b7f4d] text-white",
     });
   }
   if (brand?.youtube) {
@@ -52,7 +52,7 @@ function buildSocials(brand?: BrandSettings | null): SocialLink[] {
       href: brand.youtube,
       label: "YouTube",
       Icon: Youtube,
-      className: "bg-[#FF0000] text-white",
+      className: "bg-[#8c5f3d] text-white",
     });
   }
   return links;
@@ -68,36 +68,55 @@ export default async function Footer({ settings, brand }: Props) {
   const waHref = phoneDigits
     ? `https://wa.me/${phoneDigits}`
     : "#";
-  const tagline =
-    brand?.tagline?.trim() || "Premium ethnic wear, ships fast across India.";
+  const brandTagline = brand?.tagline?.trim() ?? "";
+  const hasLegacyRudrakshaCopy = /rudraksha|gemstone|gemstones|malas|spiritual essentials|guidance/i.test(
+    brandTagline,
+  );
+  const tagline = hasLegacyRudrakshaCopy
+    ? "Pure Ayurveda-inspired care for everyday balance."
+    : brandTagline || "Pure Ayurveda-inspired care for everyday balance.";
 
   // Fetch categories for Shop section
   const categories = await getCategories();
+  const logoMark = /placehold\.co/i.test(settings.logo_url ?? "") ? (
+    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#d9e6cf] bg-white text-[var(--brand-primary)] shadow-sm sm:h-11 sm:w-11">
+      <span className="text-lg font-semibold leading-none">S</span>
+    </div>
+  ) : settings.logo_url ? (
+    <span className="relative block h-10 w-10 shrink-0 overflow-hidden rounded-full border border-[#d9e6cf] bg-white shadow-sm sm:h-11 sm:w-11">
+      <Image
+        src={settings.logo_url}
+        alt={settings.site_name}
+        fill
+        unoptimized
+        sizes="44px"
+        className="object-contain object-center p-1"
+      />
+    </span>
+  ) : (
+    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#d9e6cf] bg-white text-[var(--brand-primary)] shadow-sm sm:h-11 sm:w-11">
+      <span className="text-lg font-semibold leading-none">S</span>
+    </div>
+  );
 
   return (
-    <footer className="mt-16 border-t border-blue-200 bg-gradient-to-br from-[#0f4db8] via-[#1f5ec9] to-[#2874f0] text-blue-50">
+    <footer className="mt-16 border-t border-[#d8c8a5] bg-gradient-to-br from-[#48612f] via-[#6b7f4d] to-[#8a7244] text-[#fcf7eb]">
       <div className="container-pad py-10 sm:py-14">
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
           {/* Brand */}
           <div className="space-y-4">
-            <div className="flex items-center gap-3">
-              {settings.logo_url ? (
-                <span className="relative inline-block h-10 w-32 overflow-hidden rounded-sm bg-white/95 px-2 py-1">
-                  <Image
-                    src={settings.logo_url}
-                    alt={settings.site_name}
-                    fill
-                    sizes="128px"
-                    className="object-contain object-left"
-                  />
-                </span>
-              ) : (
-                <span className="text-lg font-semibold tracking-tight text-white">
-                  {settings.site_name}
-                </span>
-              )}
+            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+              {logoMark}
+              <div className="leading-tight">
+                <div className="text-sm font-semibold tracking-tight text-white sm:text-base whitespace-nowrap">
+                  {settings.site_name || "ShopKart"}
+                </div>
+                <div className="text-[10px] uppercase tracking-[0.2em] text-[#f0e6cf]">
+                  Ayurveda-inspired care, made simple
+                </div>
+              </div>
             </div>
-            <p className="text-sm leading-6 text-blue-50/95">{tagline}</p>
+            <p className="text-sm leading-6 text-[#f7efdf]">{tagline}</p>
             {socials.length > 0 && (
               <div className="flex items-center gap-3 pt-1">
                 {socials.map(({ href, label, Icon, className }) => (
@@ -118,14 +137,14 @@ export default async function Footer({ settings, brand }: Props) {
 
           {/* Shop */}
           <div className="space-y-3">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-100">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f0e6cf]">
               Shop
             </div>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
                   href="/"
-                  className="text-blue-50/95 transition-colors hover:text-white"
+                  className="text-[#f7efdf] transition-colors hover:text-white"
                   prefetch
                 >
                   Home
@@ -136,7 +155,7 @@ export default async function Footer({ settings, brand }: Props) {
                   <li key={cat.id}>
                     <Link
                       href={`/category/${cat.slug}`}
-                      className="text-blue-50/95 transition-colors hover:text-white"
+                      className="text-[#f7efdf] transition-colors hover:text-white"
                       prefetch
                     >
                       {cat.name}
@@ -148,7 +167,7 @@ export default async function Footer({ settings, brand }: Props) {
                   <li>
                     <Link
                       href="/category/sarees"
-                      className="text-blue-50/95 transition-colors hover:text-white"
+                      className="text-[#f7efdf] transition-colors hover:text-white"
                       prefetch
                     >
                       Sarees
@@ -157,7 +176,7 @@ export default async function Footer({ settings, brand }: Props) {
                   <li>
                     <Link
                       href="/category/kurtis"
-                      className="text-blue-50/95 transition-colors hover:text-white"
+                      className="text-[#f7efdf] transition-colors hover:text-white"
                       prefetch
                     >
                       Kurtis
@@ -170,14 +189,14 @@ export default async function Footer({ settings, brand }: Props) {
 
           {/* Support */}
           <div className="space-y-3">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-100">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f0e6cf]">
               Support
             </div>
             <ul className="space-y-2 text-sm">
               <li>
                   <Link
                     href="/account/orders"
-                    className="text-blue-50/95 transition-colors hover:text-white"
+                    className="text-[#f7efdf] transition-colors hover:text-white"
                     prefetch
                   >
                   Track order
@@ -186,7 +205,7 @@ export default async function Footer({ settings, brand }: Props) {
               <li>
                 <Link
                   href="/account"
-                  className="text-blue-50/95 transition-colors hover:text-white"
+                  className="text-[#f7efdf] transition-colors hover:text-white"
                   prefetch
                 >
                   My account
@@ -195,7 +214,7 @@ export default async function Footer({ settings, brand }: Props) {
               <li>
                 <Link
                   href="/account/wishlist"
-                  className="text-blue-50/95 transition-colors hover:text-white"
+                  className="text-[#f7efdf] transition-colors hover:text-white"
                   prefetch
                 >
                   Wishlist
@@ -206,7 +225,7 @@ export default async function Footer({ settings, brand }: Props) {
                   href={waHref}
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="inline-flex items-center gap-2 text-blue-50/95 transition-colors hover:text-white"
+                  className="inline-flex items-center gap-2 text-[#f7efdf] transition-colors hover:text-white"
                 >
                   <MessageCircle className="h-4 w-4 text-[#ffcc00]" />
                   WhatsApp us
@@ -217,7 +236,7 @@ export default async function Footer({ settings, brand }: Props) {
 
           {/* Connect */}
           <div className="space-y-3">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-blue-100">
+            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f0e6cf]">
               Connect
             </div>
             <ul className="space-y-3 text-sm">
@@ -226,7 +245,7 @@ export default async function Footer({ settings, brand }: Props) {
                     <Mail className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#ffcc00]" />
                   <a
                     href={`mailto:${settings.business_email}`}
-                    className="break-all text-blue-50/95 transition-colors hover:text-white"
+                    className="break-all text-[#f7efdf] transition-colors hover:text-white"
                   >
                     {settings.business_email}
                   </a>
@@ -237,7 +256,7 @@ export default async function Footer({ settings, brand }: Props) {
                     <Phone className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#ffcc00]" />
                   <a
                     href={`tel:${settings.business_phone}`}
-                    className="text-blue-50/95 transition-colors hover:text-white"
+                    className="text-[#f7efdf] transition-colors hover:text-white"
                   >
                     {settings.business_phone}
                   </a>
@@ -246,7 +265,7 @@ export default async function Footer({ settings, brand }: Props) {
               {settings.whatsapp && (
                 <li className="flex items-start gap-3">
                   <MessageCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#ffcc00]" />
-                  <span className="text-blue-50/95">
+                  <span className="text-[#f7efdf]">
                     WhatsApp:{" "}
                     <span className="font-medium text-white">
                       {settings.whatsapp}
@@ -257,7 +276,7 @@ export default async function Footer({ settings, brand }: Props) {
               {settings.business_address && (
                   <li className="flex items-start gap-3">
                     <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#ffcc00]" />
-                  <span className="text-blue-50/95">
+                  <span className="text-[#f7efdf]">
                     {settings.business_address}
                   </span>
                 </li>
@@ -267,8 +286,8 @@ export default async function Footer({ settings, brand }: Props) {
         </div>
       </div>
 
-      <div className="border-t border-white/10 bg-[#2b0f10]/30">
-        <div className="container-pad flex flex-col items-center justify-between gap-3 py-5 text-center text-xs text-amber-200 sm:flex-row sm:text-left">
+      <div className="border-t border-white/10 bg-[#2a2418]/30">
+        <div className="container-pad flex flex-col items-center justify-between gap-3 py-5 text-center text-xs text-[#f0e6cf] sm:flex-row sm:text-left">
           <div className="break-words">{copyright}</div>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link

@@ -30,10 +30,10 @@ export default async function WishlistPage() {
 
   const safeSettings = settings ?? {
     id: "missing",
-    site_name: "Techpotli Store",
+    site_name: "Ayurveda Store",
     logo_url: null,
-    meta_title: "Techpotli Store",
-    meta_desc: "Shop online.",
+    meta_title: "Ayurveda Store",
+    meta_desc: "Discover authentic Ayurveda essentials.",
     og_image: null,
     ga_id: null,
     whatsapp: "7705074250",

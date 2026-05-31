@@ -121,13 +121,13 @@ export async function getSiteMetadata(
       nonEmpty(overrideTitle) ??
       nonEmpty(settings?.meta_title) ??
       nonEmpty(settings?.site_name) ??
-      "Techpotli Store";
+      "Ayurveda Store";
 
     const description =
       nonEmpty(seoPage?.description) ??
       nonEmpty(overrideDesc) ??
       nonEmpty(settings?.meta_desc) ??
-      "Shop online.";
+      "Discover authentic Ayurveda essentials.";
 
     const ogImage =
       nonEmpty(seoPage?.og_image) ??
@@ -202,9 +202,9 @@ export async function getSiteMetadata(
     console.error("[getSiteMetadata] error:", error);
     return {
       metadataBase: new URL(baseUrl),
-      title: asStringTitle(overrides?.title) ?? "Techpotli Store",
+      title: asStringTitle(overrides?.title) ?? "Ayurveda Store",
       description:
-        (overrides?.description as string | undefined) ?? "Shop online.",
+        (overrides?.description as string | undefined) ?? "Discover authentic Ayurveda essentials.",
       robots: { index: true, follow: true },
     };
   }

@@ -43,11 +43,11 @@ export default function CategoryProductsGrid({
 
       {filtered.length === 0 ? (
         <div className="rounded-2xl border bg-card p-8 text-center">
-          <div className="text-base font-semibold">No products found</div>
+          <div className="text-base font-semibold">No Ayurveda products found</div>
           <div className="mt-1 text-sm text-muted-foreground">
             {subcategoryFilterName
               ? `No products are tagged with “${subcategoryFilterName}” yet. Assign a subcategory to products in Admin → Products, or clear the filter below.`
-              : "Try switching filters or add products in Supabase."}
+              : "Try switching filters or add more Ayurveda products in Supabase."}
           </div>
         </div>
       ) : (

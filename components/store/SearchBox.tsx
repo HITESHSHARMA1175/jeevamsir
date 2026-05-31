@@ -90,9 +90,9 @@ export default function SearchBox({ defaultValue = "" }: Props) {
               setOpen(true);
             }}
             onFocus={() => setOpen(true)}
-            placeholder="Search electronics, fashion and accessories"
+            placeholder="Search herbs, oils, and Ayurveda essentials"
             autoComplete="off"
-            className="h-11 w-full rounded-full border-blue-100 bg-white/95 pl-11 pr-11 text-sm text-slate-950 shadow-[0_10px_28px_rgba(30,64,175,0.09)] placeholder:text-slate-400 focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-[rgba(37,99,235,0.2)] sm:h-12"
+            className="h-11 w-full rounded-full border-[#ddd0b4] bg-white/95 pl-11 pr-11 text-sm text-slate-950 shadow-[0_10px_28px_rgba(109,85,50,0.08)] placeholder:text-slate-400 focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-[rgba(91,127,58,0.18)] sm:h-12"
           />
           {query && (
             <button
@@ -112,11 +112,11 @@ export default function SearchBox({ defaultValue = "" }: Props) {
 
       {open && query.trim().length >= 2 && (
         <div
-          className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-[1rem] border border-blue-100 bg-white shadow-[0_24px_70px_rgba(30,64,175,0.18)]"
+          className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-[1rem] border border-[#ddd0b4] bg-white shadow-[0_24px_70px_rgba(109,85,50,0.14)]"
           onMouseDown={(event) => event.preventDefault()}
         >
-          <div className="border-b bg-blue-50/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-primary)]">
-            Suggested matches
+          <div className="border-b bg-[#f6f0e4]/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-primary)]">
+            Suggested Ayurveda matches
           </div>
           <div className="max-h-[420px] overflow-y-auto p-2">
             {loading && (
@@ -129,9 +129,9 @@ export default function SearchBox({ defaultValue = "" }: Props) {
                   key={`${item.type}-${item.id}`}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-3 rounded-[0.85rem] px-3 py-2.5 hover:bg-blue-50"
+                  className="flex items-center gap-3 rounded-[0.85rem] px-3 py-2.5 hover:bg-[#f4efe4]"
                 >
-                    <span className="relative grid h-10 w-10 flex-shrink-0 place-items-center overflow-hidden rounded-full bg-gradient-to-br from-[#eff6ff] to-[#dbeafe] text-xs font-semibold uppercase text-[var(--brand-primary)]">
+                    <span className="relative grid h-10 w-10 flex-shrink-0 place-items-center overflow-hidden rounded-full bg-gradient-to-br from-[#f3efe4] to-[#e1d4b7] text-xs font-semibold uppercase text-[var(--brand-primary)]">
                     {item.imageUrl ? (
                       <Image
                         src={item.imageUrl}
@@ -162,16 +162,16 @@ export default function SearchBox({ defaultValue = "" }: Props) {
 
             {!loading && suggestions.length === 0 && (
                 <div className="px-3 py-4 text-sm text-slate-500">
-                No direct matches. Press Enter to explore all categories.
+                No direct matches. Press Enter to explore Ayurveda categories.
               </div>
             )}
           </div>
           <button
             type="button"
             onClick={submitSearch}
-            className="block w-full border-t bg-slate-50 px-4 py-3 text-left text-sm font-semibold text-slate-950 hover:bg-blue-50"
+            className="block w-full border-t bg-slate-50 px-4 py-3 text-left text-sm font-semibold text-slate-950 hover:bg-[#f4efe4]"
           >
-            Explore &quot;{query.trim()}&quot;
+            Explore Ayurveda for &quot;{query.trim()}&quot;
           </button>
         </div>
       )}

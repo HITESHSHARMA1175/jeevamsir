@@ -21,7 +21,7 @@ function BannerFrame({ banner }: { banner: Banner }) {
       {(banner.title || banner.subtitle || banner.cta_text) && (
         <div className="absolute inset-y-0 left-0 flex max-w-xl flex-col justify-center p-5 text-white sm:p-8">
           <div className="mb-3 inline-flex w-fit rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-white/90">
-            Featured collection
+            Ayurveda collection
           </div>
           {banner.title && (
             <div className="text-xl font-semibold leading-tight sm:text-3xl">
@@ -74,7 +74,7 @@ export default function BannerSection({ section }: Props) {
         {section.title && (
           <div>
             <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-primary)]">
-              Banner spotlight
+              Ayurveda spotlight
             </div>
             <h2 className="mt-1 text-[var(--text-subheading)] font-semibold tracking-tight">
               {section.title}

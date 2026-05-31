@@ -195,7 +195,7 @@ export default function SiteSettingsForm({ initial, brandInitial }: Props) {
         <div className="mt-5 grid gap-4 md:grid-cols-2">
           <div className="space-y-2 md:col-span-2">
             <Label>Tagline (optional)</Label>
-            <Input className="admin-input" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="Great deals, everyday low prices" />
+            <Input className="admin-input" value={tagline} onChange={(e) => setTagline(e.target.value)} placeholder="Pure Ayurveda-inspired care for everyday balance" />
           </div>
           <div className="space-y-2">
             <Label>Instagram URL</Label>

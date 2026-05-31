@@ -58,10 +58,10 @@ export default async function Home({
 
   const safeSettings = settings ?? {
     id: "missing",
-    site_name: "Techpotli Store",
+    site_name: "Ayurveda Store",
     logo_url: null,
-    meta_title: "Techpotli Store",
-    meta_desc: "Shop online.",
+    meta_title: "Ayurveda Store",
+    meta_desc: "Discover authentic Ayurveda essentials.",
     og_image: null,
     ga_id: null,
     whatsapp: "7705074250",
@@ -129,7 +129,7 @@ export default async function Home({
             <div className="rounded-sm border border-blue-100 bg-white/80 p-4 shadow-sm">
               <div className="text-sm text-muted-foreground">
                 Showing <span className="font-semibold text-foreground">{filteredAllProducts.length}</span>{" "}
-                results for <span className="font-semibold text-foreground">{q}</span>
+                Ayurveda results for <span className="font-semibold text-foreground">{q}</span>
               </div>
             </div>
             <div className="mt-5 grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
@@ -139,7 +139,7 @@ export default async function Home({
             </div>
             {filteredAllProducts.length === 0 && (
               <div className="mt-5 rounded-sm border bg-white/80 p-8 text-center text-sm text-muted-foreground">
-                No products found. Try searching by product, brand, or category name.
+                No products found. Try another herb, remedy, brand, or category name.
               </div>
             )}
           </section>
@@ -155,10 +155,10 @@ export default async function Home({
               <section className="container-pad section-pad space-y-4">
                 <div>
                   <h2 className="text-[var(--text-subheading)] font-semibold tracking-tight">
-                    Featured
+                    Ayurveda picks
                   </h2>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    Trending picks from the collection
+                    Curated wellness essentials for daily balance
                   </p>
                 </div>
 

@@ -26,11 +26,11 @@ type Props = {
  */
 export default function Header({ settings, categories, subcategories, query }: Props) {
     const logoMark = /placehold\.co/i.test(settings.logo_url ?? "") ? (
-      <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#bfd5ff] bg-white text-[var(--brand-primary)] shadow-sm sm:h-11 sm:w-11">
+  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#d9e6cf] bg-white text-[var(--brand-primary)] shadow-sm sm:h-11 sm:w-11">
       <span className="text-lg font-semibold leading-none">S</span>
     </div>
   ) : settings.logo_url ? (
-    <span className="relative block h-10 w-10 shrink-0 overflow-hidden rounded-full border border-[#bfd5ff] bg-white shadow-sm sm:h-11 sm:w-11">
+    <span className="relative block h-10 w-10 shrink-0 overflow-hidden rounded-full border border-[#d9e6cf] bg-white shadow-sm sm:h-11 sm:w-11">
       <Image
         src={settings.logo_url}
         alt={settings.site_name}
@@ -42,7 +42,7 @@ export default function Header({ settings, categories, subcategories, query }: P
       />
     </span>
   ) : (
-    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#bfd5ff] bg-white text-[var(--brand-primary)] shadow-sm sm:h-11 sm:w-11">
+    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#d9e6cf] bg-white text-[var(--brand-primary)] shadow-sm sm:h-11 sm:w-11">
       <span className="text-lg font-semibold leading-none">S</span>
     </div>
   );
@@ -55,20 +55,20 @@ export default function Header({ settings, categories, subcategories, query }: P
           {settings.site_name || "ShopKart"}
         </div>
         <div className="text-[10px] uppercase tracking-[0.2em] text-[var(--brand-primary)]">
-          Great deals, everyday low prices
+          Ayurveda care, naturally chosen
         </div>
       </div>
     </div>
   );
 
   return (
-      <header className="sticky top-0 z-40 border-b border-[#cfe0ff] bg-white/95 text-slate-950 shadow-[0_12px_28px_rgba(30,64,175,0.12)] backdrop-blur-xl">
-      <div className="hidden border-b border-[#cfe0ff] bg-[#edf4ff] text-[10px] text-slate-600 lg:block">
+      <header className="sticky top-0 z-40 border-b border-[#e3d8be] bg-white/96 text-slate-950 shadow-[0_12px_28px_rgba(109,85,50,0.08)] backdrop-blur-xl">
+      <div className="hidden border-b border-[#e3d8be] bg-[#f8f1e3] text-[10px] text-slate-600 lg:block">
           <div className="container-pad flex min-h-8 items-center justify-between gap-4 py-1">
           <div className="flex flex-wrap items-center gap-x-4 gap-y-1 font-medium">
-            <span>Great deals every day</span>
-            <span>Lowest prices guaranteed</span>
-            <span>Free delivery across India</span>
+            <span>Pure herbal wellness every day</span>
+            <span>Authentic Ayurveda essentials</span>
+            <span>Trusted delivery across India</span>
           </div>
           <div className="font-medium text-[var(--brand-primary)]">
             {settings.whatsapp ? `WhatsApp: ${settings.whatsapp}` : settings.site_name}
@@ -92,7 +92,7 @@ export default function Header({ settings, categories, subcategories, query }: P
           <nav className="hidden items-center gap-1 text-sm font-medium lg:flex lg:flex-shrink-0">
             <Link
               href="/"
-              className="rounded-full px-4 py-2 text-slate-700 transition-colors hover:bg-[#e8f0ff] hover:text-[var(--brand-primary)]"
+              className="rounded-full px-4 py-2 text-slate-700 transition-colors hover:bg-[#edf2e2] hover:text-[var(--brand-primary)]"
             >
               Home
             </Link>
@@ -108,7 +108,7 @@ export default function Header({ settings, categories, subcategories, query }: P
           </div>
         </div>
 
-          <div className="border-t border-[#cfe0ff] pb-3 pt-2 lg:hidden">
+          <div className="border-t border-[#e3d8be] pb-3 pt-2 lg:hidden">
           <SearchBox defaultValue={query} />
         </div>
       </div>

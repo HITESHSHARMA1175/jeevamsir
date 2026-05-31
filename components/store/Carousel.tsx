@@ -55,7 +55,7 @@ export default function Carousel({ banners }: Props) {
       onTouchEnd={() => setPaused(false)}
     >
       <div className="w-full px-1.5 pt-1.5 sm:px-2.5 sm:pt-2 lg:px-3">
-        <div className="relative overflow-hidden rounded-[0.7rem] border border-[#bfd5ff] bg-slate-950 shadow-[0_16px_36px_rgba(30,64,175,0.2)]">
+        <div className="relative overflow-hidden rounded-[0.7rem] border border-[#bfd5ff] bg-slate-950 shadow-[0_16px_36px_rgba(15,23,42,0.12)]">
           <div className="relative h-[45vw] min-h-[140px] max-h-[280px] w-full sm:h-[32vw] sm:min-h-[200px] sm:max-h-[300px] lg:max-h-[400px]">
             {current.click_url ? (
               <Link href={current.click_url} className="block h-full w-full">
@@ -83,14 +83,14 @@ export default function Carousel({ banners }: Props) {
               </div>
             )}
 
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f4db8]/70 via-black/15 to-transparent" />
-          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#0f4db8]/95 via-[#1f5ec9]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/45 via-black/10 to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/45 via-black/15 to-transparent" />
 
           {(current.title || current.subtitle || (current.cta_text && current.click_url)) && (
             <div className="absolute inset-x-0 bottom-0 p-1.5 sm:p-2.5 lg:p-5">
-              <div className="hidden sm:block sm:space-y-1 sm:max-w-xl sm:p-2.5 sm:bg-gradient-to-br sm:from-[#1f5ec9]/75 sm:to-[#0f4db8]/55 sm:rounded-[0.4rem] sm:border sm:border-[#d9e7ff]/55 sm:text-white sm:backdrop-blur-lg lg:space-y-2 lg:p-4">
-                <div className="hidden sm:inline-flex rounded-sm border border-[#ffde66]/80 bg-[#ffde66]/20 px-1.5 py-0.5 text-[7px] font-semibold uppercase tracking-[0.1em] text-[#fff9e7] sm:px-2 sm:py-0.5 sm:text-[8px] lg:px-2.5 lg:py-1 lg:text-[9px]">
-                  Daily clarity collection
+              <div className="hidden sm:block sm:space-y-1 sm:max-w-xl sm:rounded-[0.4rem] sm:border sm:border-white/25 sm:bg-black/25 sm:p-2.5 sm:text-white sm:backdrop-blur-lg lg:space-y-2 lg:p-4">
+                <div className="hidden sm:inline-flex rounded-sm border border-white/45 bg-white/10 px-1.5 py-0.5 text-[7px] font-semibold uppercase tracking-[0.1em] text-white/90 sm:px-2 sm:py-0.5 sm:text-[8px] lg:px-2.5 lg:py-1 lg:text-[9px]">
+                  Herbal clarity collection
                 </div>
                 {current.title && (
                   <div className="hidden sm:block text-xs sm:text-base lg:text-2xl font-semibold leading-tight">
@@ -106,7 +106,7 @@ export default function Carousel({ banners }: Props) {
               {current.cta_text && current.click_url && (
                 <Button
                   asChild
-                  className="mt-0 sm:mt-1 h-7 sm:h-8 lg:h-9 text-xs rounded-sm bg-gradient-to-r from-[#ffde66] to-[#ffcc00] px-2.5 font-semibold text-[#1f4aa8] hover:shadow-lg hover:from-[#ffe27a] hover:to-[#ffd633] active:scale-95 transition-all"
+                  className="mt-0 sm:mt-1 h-7 rounded-sm bg-gradient-to-r from-[#ffde66] to-[#ffcc00] px-2.5 text-xs font-semibold text-[#1f4aa8] hover:shadow-lg hover:from-[#ffe27a] hover:to-[#ffd633] active:scale-95 transition-all sm:h-8 lg:h-9"
                 >
                   <Link href={current.click_url}>{current.cta_text}</Link>
                 </Button>
@@ -137,7 +137,7 @@ export default function Carousel({ banners }: Props) {
           </div>
 
           {banners.length > 1 && (
-            <div className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-sm border border-[#d9e7ff]/50 bg-[#0f4db8]/35 px-2.5 py-1.5 backdrop-blur-md sm:bottom-4 sm:right-4 sm:gap-2 sm:px-3 sm:py-2">
+            <div className="absolute bottom-3 right-3 flex items-center gap-1.5 rounded-sm border border-white/20 bg-black/20 px-2.5 py-1.5 backdrop-blur-md sm:bottom-4 sm:right-4 sm:gap-2 sm:px-3 sm:py-2">
               {banners.map((_, i) => (
                 <button
                   key={i}
