@@ -126,11 +126,11 @@ export const getSiteSettings = cache(
 );
 
 /**
- * getBanners
- * Fetches active homepage banners ordered by sort_order.
+ * getBannersByPlacement
+ * Fetches active homepage banners for a given placement ordered by sort_order.
  * @returns Banner[]
  */
-export async function getBanners(): Promise<Banner[]> {
+export async function getBannersByPlacement(placement: NonNullable<Banner["placement"]>): Promise<Banner[]> {
   try {
     const supabase = getPublicClient();
     if (!supabase) return [];
@@ -138,14 +138,23 @@ export async function getBanners(): Promise<Banner[]> {
       .from("banners")
       .select("*")
       .eq("is_active", true)
-      .eq("placement", "hero")
+      .eq("placement", placement)
       .order("sort_order", { ascending: true });
     if (error || !data) return [];
     return data as unknown as Banner[];
   } catch (error) {
-    console.error("[getBanners] error:", error);
+    console.error("[getBannersByPlacement] error:", error);
     return [];
   }
+}
+
+/**
+ * getBanners
+ * Convenience wrapper for hero banners used by the main carousel.
+ * @returns Banner[]
+ */
+export async function getBanners(): Promise<Banner[]> {
+  return await getBannersByPlacement("hero");
 }
 
 /**

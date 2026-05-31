@@ -11,12 +11,14 @@ import CategoryRow from "@/components/store/CategoryRow";
 import Footer from "@/components/store/Footer";
 import Header from "@/components/store/Header";
 import HomepageSectionRenderer from "@/components/store/HomepageSectionRenderer";
+import MiddleBannerSection from "@/components/store/MiddleBannerSection";
 import ProductCard from "@/components/store/ProductCard";
 import WhatsAppButton from "@/components/store/WhatsAppButton";
 import type { Product } from "@/types";
 import { getSeoPageJsonLd, getSiteMetadata } from "@/utils/store/seo";
 import {
   getBanners,
+  getBannersByPlacement,
   getBrandSettings,
   getCategories,
   getFeaturedProducts,
@@ -44,9 +46,22 @@ export default async function Home({
   const q = (Array.isArray(qRaw) ? qRaw[0] : qRaw)?.trim() ?? "";
   const qLower = q.toLowerCase();
 
-  const [banners, categories, subcategories, allProducts, featuredProducts, homepageSections, settings, brand] =
+  const [
+    banners,
+    middleBanners,
+    campaignBanners,
+    categories,
+    subcategories,
+    allProducts,
+    featuredProducts,
+    homepageSections,
+    settings,
+    brand,
+  ] =
     await Promise.all([
       getBanners(),
+      getBannersByPlacement("middle"),
+      getBannersByPlacement("campaign"),
       getCategories(),
       getSubcategories(),
       getProducts(),
@@ -123,6 +138,9 @@ export default async function Home({
         <div className="w-full">
           <Carousel banners={banners} />
         </div>
+
+        {middleBanners.length > 0 && <MiddleBannerSection banners={middleBanners} />}
+        {campaignBanners.length > 0 && <MiddleBannerSection banners={campaignBanners} />}
 
         {qLower && (
           <section className="container-pad pt-2">
