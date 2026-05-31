@@ -10,9 +10,11 @@ type Props = {
 function CategoryIcon({ category }: { category: Category }) {
   if (category.image_url) {
     return (
-      <div
-        className="h-full w-full rounded-full bg-center bg-cover"
-        style={{ backgroundImage: `url(${category.image_url})` }}
+      <img
+        src={category.image_url}
+        alt={category.name}
+        className="h-full w-full rounded-full object-cover"
+        loading="lazy"
       />
     );
   }
