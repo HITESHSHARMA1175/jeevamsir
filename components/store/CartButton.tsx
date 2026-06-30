@@ -48,7 +48,7 @@ export default function CartButton({ phone }: Props) {
         </Button>
       </SheetTrigger>
 
-      <SheetContent side="right" className="w-[92vw] sm:max-w-md">
+      <SheetContent side="right" className="w-[80vw] bg-white p-4 sm:max-w-sm">
         <SheetHeader />
         <CartSheet phone={phone} />
       </SheetContent>

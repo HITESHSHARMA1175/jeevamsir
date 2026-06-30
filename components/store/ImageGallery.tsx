@@ -62,7 +62,7 @@ export default function ImageGallery({ images, priority = false }: Props) {
       )}
 
       <div className="order-1 md:order-2">
-        <div className="relative aspect-square w-full overflow-hidden bg-transparent lg:h-[640px] lg:aspect-auto">
+        <div className="relative aspect-square w-full overflow-hidden rounded-sm bg-[hsl(0_0%_97%)] lg:h-[640px] lg:aspect-auto">
           <Image
             src={current.url}
             alt={current.alt}

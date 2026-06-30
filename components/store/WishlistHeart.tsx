@@ -59,8 +59,8 @@ export default function WishlistHeart({
 
   const baseClass =
     variant === "card"
-      ? `absolute right-2 top-2 z-20 grid ${dim} place-items-center rounded-full bg-white/95 shadow-sm backdrop-blur transition-colors`
-      : `inline-flex ${dim} items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm transition-colors`;
+      ? `absolute right-2 top-2 z-20 grid ${dim} place-items-center rounded-full bg-white/95 shadow-sm backdrop-blur transition-colors duration-150 ease-out`
+      : `inline-flex ${dim} items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm transition-colors duration-150 ease-out`;
 
   return (
     <button
@@ -73,7 +73,7 @@ export default function WishlistHeart({
       } ${className ?? ""}`}
     >
       <Heart
-        className={`${iconSize} transition-transform ${
+        className={`${iconSize} transition-transform duration-150 ease-out ${
           active ? "scale-110 fill-rose-600" : ""
         }`}
       />

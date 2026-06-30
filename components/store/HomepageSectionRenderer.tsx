@@ -13,22 +13,19 @@ function ProductSection({ section }: { section: HomepageSection }) {
   if (products.length === 0) return null;
 
   return (
-    <section className="container-pad section-pad space-y-4">
-      <div className="section-shell flex items-end justify-between gap-3">
+    <section className="container-pad section-pad space-y-3">
+      <div className="flex items-center justify-between gap-3">
         <div>
-          <div className="ornate-kicker">
-            Product spotlight
-          </div>
-          <h2 className="ornate-title">
+          <h2 className="text-base font-semibold tracking-tight text-foreground sm:text-lg">
             {section.title}
           </h2>
           {section.subtitle && (
-            <p className="mt-1 text-sm text-muted-foreground">{section.subtitle}</p>
+            <p className="mt-0.5 text-xs text-muted-foreground sm:text-sm">{section.subtitle}</p>
           )}
         </div>
       </div>
 
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3 lg:grid-cols-4">
         {products.map((product, index) => (
           <ProductCard key={product.id} product={product} priority={index < 4} />
         ))}

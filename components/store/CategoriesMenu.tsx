@@ -11,7 +11,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ChevronRight, Home, Menu, User } from "lucide-react";
+import { ChevronRight, Home, Menu } from "lucide-react";
 
 type Props = {
   categories: Category[];
@@ -77,32 +77,24 @@ export default function CategoriesMenu({
             <Menu className="h-5 w-5" />
           </Button>
         </SheetTrigger>
-        <SheetContent side="right" className="w-[92vw] overflow-y-auto p-0 sm:max-w-sm">
-          <SheetHeader className="border-b px-5 py-4 text-left">
-            <SheetTitle>Menu</SheetTitle>
+        <SheetContent side="right" className="w-[80vw] overflow-y-auto p-0 sm:max-w-xs">
+          <SheetHeader className="border-b px-4 py-3 text-left">
+            <SheetTitle className="text-sm">Menu</SheetTitle>
           </SheetHeader>
 
-          <div className="grid gap-4 p-5">
-            <div className="grid grid-cols-2 gap-2">
-              <Button asChild variant="outline" className="justify-start rounded-sm">
-                <Link href="/">
-                  <Home className="mr-2 h-4 w-4" />
-                  Home
-                </Link>
-              </Button>
-              <Button asChild variant="outline" className="justify-start rounded-sm">
-                <Link href="/account">
-                  <User className="mr-2 h-4 w-4" />
-                  Account
-                </Link>
-              </Button>
-            </div>
+          <div className="grid gap-3 p-3">
+            <Button asChild variant="outline" size="sm" className="justify-start rounded-sm text-xs">
+              <Link href="/">
+                <Home className="mr-1.5 h-3.5 w-3.5" />
+                Home
+              </Link>
+            </Button>
 
             <div>
-              <div className="mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
-                Shop Categories
+              <div className="mb-1.5 text-[10px] font-semibold uppercase tracking-[0.14em] text-muted-foreground">
+                Categories
               </div>
-              <div className="grid gap-3">
+              <div className="grid gap-1">
                 {categories.map((category) => {
                   const subs = byCategory.get(category.id) ?? [];
 
@@ -110,21 +102,21 @@ export default function CategoriesMenu({
                     <div key={category.id} className="rounded-sm border bg-white">
                       <Link
                         href={`/category/${category.slug}`}
-                        className="flex items-center justify-between gap-3 px-4 py-3 text-sm font-semibold text-slate-950"
+                        className="flex items-center justify-between gap-2 px-3 py-2 text-xs font-medium text-foreground"
                       >
-                        <span className="flex min-w-0 items-center gap-2">
+                        <span className="flex min-w-0 items-center gap-1.5">
                           <CategoryIcon category={category} />
                           <span className="truncate">{category.name}</span>
                         </span>
-                        <ChevronRight className="h-4 w-4 text-slate-400" />
+                        <ChevronRight className="h-3.5 w-3.5 text-muted-foreground" />
                       </Link>
                       {subs.length > 0 && (
-                        <div className="grid gap-1 border-t bg-slate-50 px-4 py-3">
-                          {subs.slice(0, 6).map((sub) => (
+                        <div className="border-t bg-muted/50 px-3 py-1.5">
+                          {subs.slice(0, 3).map((sub) => (
                             <Link
                               key={sub.id}
                               href={`/category/${category.slug}?sub=${sub.slug}`}
-                              className="py-1.5 text-sm text-slate-600 hover:text-blue-700"
+                              className="block py-0.5 text-[11px] text-muted-foreground hover:text-primary"
                             >
                               {sub.name}
                             </Link>
@@ -151,7 +143,7 @@ export default function CategoriesMenu({
       >
         Categories
       </button>
-      <div className="invisible absolute right-0 top-full z-50 hidden w-[min(820px,calc(100vw-2rem))] translate-y-3 border bg-white text-slate-900 opacity-0 shadow-[0_24px_70px_rgba(15,23,42,0.18)] transition-all group-hover:visible group-hover:translate-y-2 group-hover:opacity-100 lg:block">
+      <div className="invisible absolute right-0 top-full z-50 hidden w-[min(820px,calc(100vw-2rem))] translate-y-3 border bg-white text-slate-900 opacity-0 shadow-[0_24px_70px_rgba(15,23,42,0.18)] transition-all duration-200 ease-out group-hover:visible group-hover:translate-y-2 group-hover:opacity-100 lg:block">
         <div className="grid min-h-[320px] grid-cols-[240px_minmax(0,1fr)]">
           <div className="border-r bg-slate-50 p-3">
             {categories.map((category) => (

@@ -21,29 +21,21 @@ export default function CategoryRow({ category, products }: Props) {
   const mobileItems = products.slice(0, 6);
 
   return (
-    <section className="space-y-4 rounded-[0.9rem] border border-[#e7d8c4] bg-gradient-to-b from-[#fffdf9] to-[#f7efe4] p-3 shadow-[0_16px_40px_rgba(80,43,43,0.07)] backdrop-blur sm:p-5">
-      <div className="flex items-end justify-between gap-3">
-        <div>
-          <div className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[var(--brand-primary)]">
-            Spiritual collection
-          </div>
-          <h2 className="mt-1 text-[var(--text-subheading)] font-semibold tracking-tight text-slate-950">
-            {category.icon_emoji ? `${category.icon_emoji} ` : ""}
-            {category.name}
-          </h2>
-          <div className="mt-1 text-sm text-slate-500">
-            Handpicked items in {category.name.toLowerCase()}
-          </div>
-        </div>
+    <section className="space-y-3 rounded-sm border border-border bg-white p-3 shadow-[var(--shadow-soft)] sm:p-4 lg:p-5">
+      <div className="flex items-center justify-between gap-2">
+        <h2 className="text-sm font-semibold tracking-tight text-foreground sm:text-base">
+          {category.icon_emoji ? `${category.icon_emoji} ` : ""}
+          {category.name}
+        </h2>
         <Link
           href={`/category/${category.slug}`}
-          className="flex-shrink-0 rounded-sm border border-[#d8c0a0] bg-[#f3e7d8] px-3 py-1.5 text-sm font-semibold text-[var(--brand-primary)] transition-colors hover:border-[#c9a882] hover:bg-[#efdcc3] hover:text-[var(--brand-primary-hover)]"
+          className="flex-shrink-0 rounded-full bg-primary px-3 py-1 text-[11px] font-semibold text-white transition-colors duration-150 ease-out hover:bg-primary/90 sm:px-4 sm:py-1.5 sm:text-xs"
         >
           View all
         </Link>
       </div>
 
-      <div className="grid grid-cols-2 gap-2.5 sm:hidden">
+      <div className="grid grid-cols-2 gap-2 sm:hidden">
         {mobileItems.map((p) => (
           <ProductCard key={p.id} product={p} />
         ))}
@@ -61,4 +53,3 @@ export default function CategoryRow({ category, products }: Props) {
 }
 
 CategoryRow.displayName = "CategoryRow";
-

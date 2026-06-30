@@ -11,7 +11,6 @@ import {
   Instagram,
   Mail,
   MapPin,
-  MessageCircle,
   Phone,
   Youtube,
 } from "lucide-react";
@@ -35,8 +34,7 @@ function buildSocials(brand?: BrandSettings | null): SocialLink[] {
       href: brand.instagram,
       label: "Instagram",
       Icon: Instagram,
-      className:
-      "bg-gradient-to-br from-[#6f8f4a] via-[#8a7244] to-[#c98f2c] text-white",
+      className: "bg-primary text-primary-foreground",
     });
   }
   if (brand?.facebook) {
@@ -44,7 +42,7 @@ function buildSocials(brand?: BrandSettings | null): SocialLink[] {
       href: brand.facebook,
       label: "Facebook",
       Icon: Facebook,
-      className: "bg-[#6b7f4d] text-white",
+      className: "bg-primary text-primary-foreground",
     });
   }
   if (brand?.youtube) {
@@ -52,7 +50,7 @@ function buildSocials(brand?: BrandSettings | null): SocialLink[] {
       href: brand.youtube,
       label: "YouTube",
       Icon: Youtube,
-      className: "bg-[#8c5f3d] text-white",
+      className: "bg-primary text-primary-foreground",
     });
   }
   return links;
@@ -79,11 +77,11 @@ export default async function Footer({ settings, brand }: Props) {
   // Fetch categories for Shop section
   const categories = await getCategories();
   const logoMark = /placehold\.co/i.test(settings.logo_url ?? "") ? (
-    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#d9e6cf] bg-white text-[var(--brand-primary)] shadow-sm sm:h-11 sm:w-11">
+    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border bg-white text-primary shadow-sm sm:h-11 sm:w-11">
       <span className="text-lg font-semibold leading-none">S</span>
     </div>
   ) : settings.logo_url ? (
-    <span className="relative block h-10 w-10 shrink-0 overflow-hidden rounded-full border border-[#d9e6cf] bg-white shadow-sm sm:h-11 sm:w-11">
+    <span className="relative block h-10 w-10 shrink-0 overflow-hidden rounded-full border border-border bg-white shadow-sm sm:h-11 sm:w-11">
       <Image
         src={settings.logo_url}
         alt={settings.site_name}
@@ -94,31 +92,28 @@ export default async function Footer({ settings, brand }: Props) {
       />
     </span>
   ) : (
-    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#d9e6cf] bg-white text-[var(--brand-primary)] shadow-sm sm:h-11 sm:w-11">
+    <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-border bg-white text-primary shadow-sm sm:h-11 sm:w-11">
       <span className="text-lg font-semibold leading-none">S</span>
     </div>
   );
 
   return (
-    <footer className="mt-16 border-t border-[#d8c8a5] bg-gradient-to-br from-[#48612f] via-[#6b7f4d] to-[#8a7244] text-[#fcf7eb]">
-      <div className="container-pad py-10 sm:py-14">
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 lg:gap-12">
-          {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+    <footer className="mt-10 border-t border-border bg-muted sm:mt-16">
+      <div className="container-pad py-6 sm:py-10">
+        <div className="grid grid-cols-2 gap-5 sm:gap-8 lg:grid-cols-4 lg:gap-10">
+          {/* Brand — full width on mobile */}
+          <div className="col-span-2 space-y-2.5 lg:col-span-1">
+            <div className="flex items-center gap-2 flex-shrink-0">
               {logoMark}
               <div className="leading-tight">
-                <div className="text-sm font-semibold tracking-tight text-white sm:text-base whitespace-nowrap">
+                <div className="text-sm font-semibold tracking-tight text-foreground whitespace-nowrap">
                   {settings.site_name || "ShopKart"}
-                </div>
-                <div className="text-[10px] uppercase tracking-[0.2em] text-[#f0e6cf]">
-                  Ayurveda-inspired care, made simple
                 </div>
               </div>
             </div>
-            <p className="text-sm leading-6 text-[#f7efdf]">{tagline}</p>
+            <p className="max-w-xs text-xs leading-5 text-muted-foreground sm:text-sm sm:leading-relaxed">{tagline}</p>
             {socials.length > 0 && (
-              <div className="flex items-center gap-3 pt-1">
+              <div className="flex items-center gap-2">
                 {socials.map(({ href, label, Icon, className }) => (
                   <a
                     key={label}
@@ -126,9 +121,9 @@ export default async function Footer({ settings, brand }: Props) {
                     target="_blank"
                     rel="noreferrer noopener"
                     aria-label={`Open our ${label}`}
-                    className={`grid h-10 w-10 place-items-center rounded-full shadow-md transition-transform duration-200 hover:-translate-y-0.5 hover:shadow-lg ${className}`}
+                    className={`grid h-8 w-8 place-items-center rounded-full transition-transform duration-200 ease-out hover:-translate-y-0.5 sm:h-9 sm:w-9 ${className}`}
                   >
-                    <Icon className="h-5 w-5" />
+                    <Icon className="h-4 w-4" />
                   </a>
                 ))}
               </div>
@@ -136,149 +131,83 @@ export default async function Footer({ settings, brand }: Props) {
           </div>
 
           {/* Shop */}
-          <div className="space-y-3">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f0e6cf]">
-              Shop
-            </div>
-            <ul className="space-y-2 text-sm">
+          <div className="space-y-2 sm:space-y-3">
+            <div className="text-xs font-semibold text-foreground sm:text-sm">Shop</div>
+            <ul className="space-y-2 text-sm sm:space-y-2.5">
               <li>
-                <Link
-                  href="/"
-                  className="text-[#f7efdf] transition-colors hover:text-white"
-                  prefetch
-                >
+                <Link href="/" className="text-muted-foreground transition-colors duration-150 ease-out hover:text-primary" prefetch>
                   Home
                 </Link>
               </li>
               {categories && categories.length > 0 ? (
-                categories.slice(0, 5).map((cat: Category) => (
+                categories.slice(0, 6).map((cat: Category) => (
                   <li key={cat.id}>
-                    <Link
-                      href={`/category/${cat.slug}`}
-                      className="text-[#f7efdf] transition-colors hover:text-white"
-                      prefetch
-                    >
+                    <Link href={`/category/${cat.slug}`} className="text-muted-foreground transition-colors duration-150 ease-out hover:text-primary" prefetch>
                       {cat.name}
                     </Link>
                   </li>
                 ))
               ) : (
-                <>
-                  <li>
-                    <Link
-                      href="/category/sarees"
-                      className="text-[#f7efdf] transition-colors hover:text-white"
-                      prefetch
-                    >
-                      Sarees
-                    </Link>
-                  </li>
-                  <li>
-                    <Link
-                      href="/category/kurtis"
-                      className="text-[#f7efdf] transition-colors hover:text-white"
-                      prefetch
-                    >
-                      Kurtis
-                    </Link>
-                  </li>
-                </>
+                <li>
+                  <Link href="/category/sarees" className="text-muted-foreground transition-colors duration-150 ease-out hover:text-primary" prefetch>
+                    All Products
+                  </Link>
+                </li>
               )}
             </ul>
           </div>
 
-          {/* Support */}
-          <div className="space-y-3">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f0e6cf]">
-              Support
-            </div>
-            <ul className="space-y-2 text-sm">
+          {/* Quick Links */}
+          <div className="space-y-2 sm:space-y-3">
+            <div className="text-xs font-semibold text-foreground sm:text-sm">Quick Links</div>
+            <ul className="space-y-2 text-sm sm:space-y-2.5">
               <li>
-                  <Link
-                    href="/account/orders"
-                    className="text-[#f7efdf] transition-colors hover:text-white"
-                    prefetch
-                  >
-                  Track order
-                </Link>
+                <a href={waHref} target="_blank" rel="noreferrer noopener" className="text-muted-foreground transition-colors duration-150 ease-out hover:text-primary">
+                  Track Orders
+                </a>
               </li>
               <li>
-                <Link
-                  href="/account"
-                  className="text-[#f7efdf] transition-colors hover:text-white"
-                  prefetch
-                >
-                  My account
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/account/wishlist"
-                  className="text-[#f7efdf] transition-colors hover:text-white"
-                  prefetch
-                >
+                <Link href="/account/wishlist" className="text-muted-foreground transition-colors duration-150 ease-out hover:text-primary" prefetch>
                   Wishlist
                 </Link>
               </li>
               <li>
-                <a
-                  href={waHref}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="inline-flex items-center gap-2 text-[#f7efdf] transition-colors hover:text-white"
-                >
-                  <MessageCircle className="h-4 w-4 text-[#ffcc00]" />
-                  WhatsApp us
+                <Link href="/checkout" className="text-muted-foreground transition-colors duration-150 ease-out hover:text-primary" prefetch>
+                  Checkout
+                </Link>
+              </li>
+              <li>
+                <a href={waHref} target="_blank" rel="noreferrer noopener" className="text-muted-foreground transition-colors duration-150 ease-out hover:text-primary">
+                  Support
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Connect */}
-          <div className="space-y-3">
-            <div className="text-xs font-semibold uppercase tracking-[0.2em] text-[#f0e6cf]">
-              Connect
-            </div>
-            <ul className="space-y-3 text-sm">
+          {/* Contact */}
+          <div className="space-y-2 sm:space-y-3">
+            <div className="text-xs font-semibold text-foreground sm:text-sm">Contact</div>
+            <ul className="space-y-2 text-xs sm:space-y-2.5 sm:text-sm">
               {settings.business_email && (
-                  <li className="flex items-start gap-3">
-                    <Mail className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#ffcc00]" />
-                  <a
-                    href={`mailto:${settings.business_email}`}
-                    className="break-all text-[#f7efdf] transition-colors hover:text-white"
-                  >
+                <li className="flex items-center gap-1.5">
+                  <Mail className="h-3.5 w-3.5 flex-shrink-0 text-muted-foreground" />
+                  <a href={`mailto:${settings.business_email}`} className="truncate text-muted-foreground transition-colors duration-150 ease-out hover:text-primary">
                     {settings.business_email}
                   </a>
                 </li>
               )}
-              {settings.business_phone && (
-                  <li className="flex items-start gap-3">
-                    <Phone className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#ffcc00]" />
-                  <a
-                    href={`tel:${settings.business_phone}`}
-                    className="text-[#f7efdf] transition-colors hover:text-white"
-                  >
-                    {settings.business_phone}
+              {settings.whatsapp && (
+                <li className="flex items-center gap-1.5">
+                  <Phone className="h-3.5 w-3.5 flex-shrink-0 text-muted-foreground" />
+                  <a href={waHref} target="_blank" rel="noreferrer noopener" className="text-muted-foreground transition-colors duration-150 ease-out hover:text-primary">
+                    {settings.whatsapp}
                   </a>
                 </li>
               )}
-              {settings.whatsapp && (
-                <li className="flex items-start gap-3">
-                  <MessageCircle className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#ffcc00]" />
-                  <span className="text-[#f7efdf]">
-                    WhatsApp:{" "}
-                    <span className="font-medium text-white">
-                      {settings.whatsapp}
-                    </span>
-                  </span>
-                </li>
-              )}
               {settings.business_address && (
-                  <li className="flex items-start gap-3">
-                    <MapPin className="mt-0.5 h-4 w-4 flex-shrink-0 text-[#ffcc00]" />
-                  <span className="text-[#f7efdf]">
-                    {settings.business_address}
-                  </span>
+                <li className="flex items-start gap-1.5">
+                  <MapPin className="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-muted-foreground" />
+                  <span className="text-muted-foreground">{settings.business_address}</span>
                 </li>
               )}
             </ul>
@@ -286,31 +215,13 @@ export default async function Footer({ settings, brand }: Props) {
         </div>
       </div>
 
-      <div className="border-t border-white/10 bg-[#2a2418]/30">
-        <div className="container-pad flex flex-col items-center justify-between gap-3 py-5 text-center text-xs text-[#f0e6cf] sm:flex-row sm:text-left">
-          <div className="break-words">{copyright}</div>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/account"
-              className="transition-colors hover:text-white"
-              prefetch
-            >
-              Privacy
-            </Link>
-            <Link
-              href="/account"
-              className="transition-colors hover:text-white"
-              prefetch
-            >
-              Terms
-            </Link>
-            <Link
-              href="/account/orders"
-              className="transition-colors hover:text-white"
-              prefetch
-            >
-              Returns
-            </Link>
+      <div className="border-t border-border">
+        <div className="container-pad flex flex-col items-center justify-between gap-2 py-3 text-center text-[11px] text-muted-foreground sm:flex-row sm:text-left sm:text-xs">
+          <div>{copyright}</div>
+          <div className="flex items-center gap-3">
+            <Link href="/account" className="hover:text-primary" prefetch>Privacy</Link>
+            <Link href="/account" className="hover:text-primary" prefetch>Terms</Link>
+            <Link href="/account/orders" className="hover:text-primary" prefetch>Returns</Link>
           </div>
         </div>
       </div>

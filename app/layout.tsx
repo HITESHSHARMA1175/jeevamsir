@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Geist } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { Toaster } from "sonner";
@@ -9,8 +10,20 @@ import MobileBottomNav from "@/components/store/MobileBottomNav";
 import { getSiteMetadata } from "@/utils/store/seo";
 import { getSiteSettings } from "@/utils/store/queries";
 
-export async function generateMetadata() {
-  return await getSiteMetadata();
+export async function generateMetadata(): Promise<Metadata> {
+  const base = await getSiteMetadata();
+  return {
+    ...base,
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "any" },
+        { url: "/favicon.svg", type: "image/svg+xml" },
+        { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      ],
+      apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
+    },
+    manifest: "/site.webmanifest",
+  };
 }
 
 const geistSans = Geist({
@@ -48,18 +61,45 @@ export default async function RootLayout({
         logo: settings.logo_url ?? undefined,
         email: settings.business_email ?? undefined,
         telephone: settings.business_phone ?? undefined,
+        description: "Jeewanom Ayurveda — Buy authentic Ayurvedic products online. Herbal supplements, immunity boosters, digestive care, skin care, hair care, churna & herbal teas delivered across India.",
+        sameAs: [] as string[],
         address: settings.business_address
           ? {
               "@type": "PostalAddress",
               streetAddress: settings.business_address,
+              addressCountry: "IN",
             }
           : undefined,
       }
     : null;
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: settings?.site_name ?? "Jeewanom Ayurveda",
+    url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://jeewanom.com",
+    description: "Buy authentic Ayurvedic medicines, herbal supplements, immunity boosters, digestive care, skin care & hair care products online. Trusted delivery across India.",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: {
+        "@type": "EntryPoint",
+        urlTemplate: `${process.env.NEXT_PUBLIC_SITE_URL ?? "https://jeewanom.com"}/?q={search_term_string}`,
+      },
+      "query-input": "required name=search_term_string",
+    },
+  };
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* Favicons — explicit links for Google and all browsers */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon-96x96.png" type="image/png" sizes="96x96" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+        <link rel="manifest" href="/site.webmanifest" />
+        <meta name="theme-color" content="#3d7a6e" />
+
         {supabaseOrigin && (
           <>
             <link rel="preconnect" href={supabaseOrigin} crossOrigin="" />
@@ -84,6 +124,14 @@ export default async function RootLayout({
             dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
           />
         )}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
       </head>
       <body className={`${geistSans.className} antialiased`}>
         <div

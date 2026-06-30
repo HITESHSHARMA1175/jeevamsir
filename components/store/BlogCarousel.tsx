@@ -44,7 +44,7 @@ export default function BlogCarousel({ blogs }: { blogs: Blog[] }) {
           <button
             onClick={() => scroll("left")}
             aria-label="Scroll left"
-            className="absolute left-0 top-1/2 z-10 -translate-y-1/2 -translate-x-2 lg:-translate-x-4 grid h-10 w-10 place-items-center rounded-full bg-white/80 hover:bg-white shadow-sm border border-amber-100/50 text-slate-900 hover:shadow-md transition-all"
+            className="absolute left-0 top-1/2 z-10 -translate-y-1/2 -translate-x-2 lg:-translate-x-4 grid h-10 w-10 place-items-center rounded-full bg-white/80 hover:bg-white shadow-sm border border-border text-slate-900 hover:shadow-md transition-colors duration-150 ease-out"
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -52,7 +52,7 @@ export default function BlogCarousel({ blogs }: { blogs: Blog[] }) {
           <button
             onClick={() => scroll("right")}
             aria-label="Scroll right"
-            className="absolute right-0 top-1/2 z-10 -translate-y-1/2 translate-x-2 lg:translate-x-4 grid h-10 w-10 place-items-center rounded-full bg-white/80 hover:bg-white shadow-sm border border-amber-100/50 text-slate-900 hover:shadow-md transition-all"
+            className="absolute right-0 top-1/2 z-10 -translate-y-1/2 translate-x-2 lg:translate-x-4 grid h-10 w-10 place-items-center rounded-full bg-white/80 hover:bg-white shadow-sm border border-border text-slate-900 hover:shadow-md transition-colors duration-150 ease-out"
           >
             <ChevronRight className="h-5 w-5" />
           </button>
@@ -68,15 +68,15 @@ export default function BlogCarousel({ blogs }: { blogs: Blog[] }) {
                 href={`/blog/${blog.slug}`}
                 className="flex-shrink-0 w-80 group"
               >
-                <div className="h-full rounded-[1.2rem] border border-amber-100 bg-white shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden">
+                <div className="h-full rounded-sm border border-border bg-white shadow-sm hover:shadow-lg transition-all duration-200 ease-out overflow-hidden">
                   {/* Image */}
                   {blog.image_url && (
-                    <div className="relative h-48 w-full overflow-hidden bg-gradient-to-br from-amber-50 to-orange-50">
+                    <div className="relative h-48 w-full overflow-hidden bg-muted">
                       <Image
                         src={blog.image_url}
                         alt={blog.title}
                         fill
-                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                        className="object-cover group-hover:scale-110 transition-transform duration-200 ease-out"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
                     </div>
@@ -85,12 +85,12 @@ export default function BlogCarousel({ blogs }: { blogs: Blog[] }) {
                   {/* Content */}
                   <div className="p-4">
                     {/* Category Badge */}
-                    <div className="inline-block rounded-full bg-amber-50 px-2.5 py-1 text-xs font-semibold text-[var(--brand-primary)] mb-3">
+                    <div className="inline-block rounded-full bg-accent px-2.5 py-1 text-xs font-semibold text-[var(--brand-primary)] mb-3">
                       {blog.category}
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-sm font-semibold text-slate-950 line-clamp-2 group-hover:text-[var(--brand-primary)] transition-colors">
+                    <h3 className="text-sm font-semibold text-slate-950 line-clamp-2 group-hover:text-[var(--brand-primary)] transition-colors duration-150 ease-out">
                       {blog.title}
                     </h3>
 
@@ -102,9 +102,9 @@ export default function BlogCarousel({ blogs }: { blogs: Blog[] }) {
                     )}
 
                     {/* Read More Link */}
-                    <div className="mt-3 inline-flex items-center text-xs font-semibold text-[var(--brand-primary)] group-hover:gap-1 gap-0.5 transition-all">
+                    <div className="mt-3 inline-flex items-center text-xs font-semibold text-[var(--brand-primary)] group-hover:gap-1 gap-0.5 transition-all duration-200 ease-out">
                       Read Article
-                      <span className="group-hover:translate-x-0.5 transition-transform">›</span>
+                      <span className="group-hover:translate-x-0.5 transition-transform duration-150 ease-out">›</span>
                     </div>
                   </div>
                 </div>

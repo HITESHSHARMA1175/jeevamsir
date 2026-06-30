@@ -33,7 +33,35 @@ import {
 // background. Use a revalidate webhook/admin save to bust the cache.
 export const revalidate = 60;
 export async function generateMetadata() {
-  return await getSiteMetadata(undefined, "/");
+  const baseMeta = await getSiteMetadata(undefined, "/");
+  // Enhance homepage with Ayurveda-focused SEO keywords
+  return {
+    ...baseMeta,
+    title: baseMeta.title || "Jeewanom Ayurveda – Buy Authentic Ayurvedic Products Online in India",
+    description: baseMeta.description || "Shop genuine Ayurvedic medicines, herbal supplements, immunity boosters, digestive care, skin care, hair care products, herbal powders & teas. Free delivery across India. Triphala Churna, Ashwagandha, Giloy, Amla & more.",
+    keywords: [
+      "ayurvedic products online",
+      "buy ayurvedic medicine India",
+      "herbal supplements",
+      "immunity booster ayurveda",
+      "digestive care products",
+      "ayurvedic skin care",
+      "ayurvedic hair care",
+      "herbal powder churna",
+      "herbal tea India",
+      "triphala churna",
+      "ashwagandha",
+      "giloy",
+      "amla",
+      "neem products",
+      "natural wellness products India",
+      "jeewanom ayurveda",
+      "authentic ayurveda online store",
+      "ayurvedic medicine online shopping",
+      "herbal face pack",
+      "digestive herbal tea",
+    ],
+  };
 }
 
 export default async function Home({

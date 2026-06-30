@@ -92,7 +92,7 @@ export default function SearchBox({ defaultValue = "" }: Props) {
             onFocus={() => setOpen(true)}
             placeholder="Search herbs, oils, and Ayurveda essentials"
             autoComplete="off"
-            className="h-11 w-full rounded-full border-[#ddd0b4] bg-white/95 pl-11 pr-11 text-sm text-slate-950 shadow-[0_10px_28px_rgba(109,85,50,0.08)] placeholder:text-slate-400 focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-[rgba(91,127,58,0.18)] sm:h-12"
+            className="h-11 w-full rounded-full border-border bg-white/95 pl-11 pr-11 text-sm text-slate-950 shadow-[var(--shadow-soft)] placeholder:text-slate-400 focus-visible:bg-white focus-visible:ring-2 focus-visible:ring-primary/20 sm:h-12"
           />
           {query && (
             <button
@@ -112,10 +112,10 @@ export default function SearchBox({ defaultValue = "" }: Props) {
 
       {open && query.trim().length >= 2 && (
         <div
-          className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-[1rem] border border-[#ddd0b4] bg-white shadow-[0_24px_70px_rgba(109,85,50,0.14)]"
+          className="absolute left-0 right-0 top-full z-50 mt-2 overflow-hidden rounded-sm border border-border bg-white shadow-[var(--shadow-card)]"
           onMouseDown={(event) => event.preventDefault()}
         >
-          <div className="border-b bg-[#f6f0e4]/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-primary)]">
+          <div className="border-b bg-muted px-4 py-2 text-xs font-semibold uppercase tracking-[0.16em] text-[var(--brand-primary)]">
             Suggested Ayurveda matches
           </div>
           <div className="max-h-[420px] overflow-y-auto p-2">
@@ -129,9 +129,9 @@ export default function SearchBox({ defaultValue = "" }: Props) {
                   key={`${item.type}-${item.id}`}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="flex items-center gap-3 rounded-[0.85rem] px-3 py-2.5 hover:bg-[#f4efe4]"
+                  className="flex items-center gap-3 rounded-sm px-3 py-2.5 hover:bg-muted"
                 >
-                    <span className="relative grid h-10 w-10 flex-shrink-0 place-items-center overflow-hidden rounded-full bg-gradient-to-br from-[#f3efe4] to-[#e1d4b7] text-xs font-semibold uppercase text-[var(--brand-primary)]">
+                    <span className="relative grid h-10 w-10 flex-shrink-0 place-items-center overflow-hidden rounded-full bg-muted text-xs font-semibold uppercase text-[var(--brand-primary)]">
                     {item.imageUrl ? (
                       <Image
                         src={item.imageUrl}
@@ -169,7 +169,7 @@ export default function SearchBox({ defaultValue = "" }: Props) {
           <button
             type="button"
             onClick={submitSearch}
-            className="block w-full border-t bg-slate-50 px-4 py-3 text-left text-sm font-semibold text-slate-950 hover:bg-[#f4efe4]"
+            className="block w-full border-t bg-slate-50 px-4 py-3 text-left text-sm font-semibold text-slate-950 hover:bg-muted"
           >
             Explore Ayurveda for &quot;{query.trim()}&quot;
           </button>

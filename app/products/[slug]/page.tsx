@@ -174,7 +174,7 @@ export default async function ProductPage({
           / <span className="text-foreground">{product.name}</span>
         </div>
 
-        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)] lg:gap-12">
+        <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,0.85fr)]">
           <div className="lg:sticky lg:top-24">
             <ImageGallery images={images} priority />
           </div>
@@ -230,37 +230,43 @@ export default async function ProductPage({
               )}
             </div>
 
-            <div className="rounded-2xl border bg-card p-4 shadow-soft">
-              <div className="text-sm font-semibold">Need help?</div>
-              <div className="mt-1 text-sm text-muted-foreground">
-                Chat on WhatsApp for size, delivery, or availability.
-              </div>
-              <div className="mt-3">
-                <WhatsAppButton
-                  phone={safeSettings.whatsapp}
-                  productName={product.name}
-                  sellPrice={product.sell_price}
-                  productUrl={`${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/products/${product.slug}`}
-                />
+            <div className="border-t border-border py-6">
+              <div className="rounded-sm border border-border bg-card p-4">
+                <div className="text-sm font-semibold">Need help?</div>
+                <div className="mt-1 text-sm text-muted-foreground">
+                  Chat on WhatsApp for size, delivery, or availability.
+                </div>
+                <div className="mt-3">
+                  <WhatsAppButton
+                    phone={safeSettings.whatsapp}
+                    productName={product.name}
+                    sellPrice={product.sell_price}
+                    productUrl={`${process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"}/products/${product.slug}`}
+                  />
+                </div>
               </div>
             </div>
 
             {product.description && (
-              <div className="prose prose-sm max-w-none whitespace-pre-line text-foreground">
-                {product.description}
+              <div className="border-t border-border py-6">
+                <div className="prose prose-sm max-w-none whitespace-pre-line text-foreground">
+                  {product.description}
+                </div>
               </div>
             )}
           </div>
         </div>
 
-        <ProductReviews
-          productId={product.id}
-          stats={reviewStats}
-          initialReviews={reviews}
-        />
+        <div className="border-t border-border py-6">
+          <ProductReviews
+            productId={product.id}
+            stats={reviewStats}
+            initialReviews={reviews}
+          />
+        </div>
 
         {related.length > 0 && category && (
-          <section className="mt-12 space-y-4">
+          <section className="border-t border-border py-6 space-y-4">
             <div className="flex items-center justify-between">
               <h2 className="text-[var(--text-subheading)] font-semibold tracking-tight">
                 More from {category.name}

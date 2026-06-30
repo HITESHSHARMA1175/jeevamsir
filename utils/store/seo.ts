@@ -121,13 +121,13 @@ export async function getSiteMetadata(
       nonEmpty(overrideTitle) ??
       nonEmpty(settings?.meta_title) ??
       nonEmpty(settings?.site_name) ??
-      "Ayurveda Store";
+      "Jeewanom Ayurveda – Buy Authentic Ayurvedic Products Online India";
 
     const description =
       nonEmpty(seoPage?.description) ??
       nonEmpty(overrideDesc) ??
       nonEmpty(settings?.meta_desc) ??
-      "Discover authentic Ayurveda essentials.";
+      "Shop genuine Ayurvedic medicines, herbal supplements, immunity boosters, digestive care, skin care & hair care products. Free delivery across India.";
 
     const ogImage =
       nonEmpty(seoPage?.og_image) ??
@@ -179,11 +179,28 @@ export async function getSiteMetadata(
       metadataBase: new URL(baseUrl),
       title,
       description,
-      keywords: keywords && keywords.length > 0 ? keywords : undefined,
+      keywords: keywords && keywords.length > 0 ? keywords : [
+        "ayurvedic products online",
+        "buy ayurvedic medicine",
+        "herbal supplements India",
+        "immunity booster ayurveda",
+        "triphala churna",
+        "ashwagandha",
+        "digestive care ayurveda",
+        "skin care herbal",
+        "hair care ayurvedic",
+        "herbal tea India",
+        "natural wellness products",
+        "ayurvedic store online",
+        "jeewanom ayurveda",
+      ],
       alternates: seoPage?.canonical_url
         ? { canonical: seoPage.canonical_url }
-        : undefined,
+        : { canonical: pathname ? `${baseUrl}${pathname}` : baseUrl },
       openGraph: {
+        type: "website",
+        locale: "en_IN",
+        siteName: settings?.site_name ?? "Jeewanom Ayurveda",
         title: ogTitle,
         description: ogDesc,
         images: ogImage ? [ogImage] : [],
@@ -202,9 +219,9 @@ export async function getSiteMetadata(
     console.error("[getSiteMetadata] error:", error);
     return {
       metadataBase: new URL(baseUrl),
-      title: asStringTitle(overrides?.title) ?? "Ayurveda Store",
+      title: asStringTitle(overrides?.title) ?? "Jeewanom Ayurveda – Buy Authentic Ayurvedic Products Online India",
       description:
-        (overrides?.description as string | undefined) ?? "Discover authentic Ayurveda essentials.",
+        (overrides?.description as string | undefined) ?? "Shop genuine Ayurvedic medicines, herbal supplements, immunity boosters & natural wellness products. Free delivery across India.",
       robots: { index: true, follow: true },
     };
   }
@@ -241,21 +258,30 @@ export function buildProductMetadata(
 ): Metadata {
   const title =
     product.meta_title?.trim() ||
-    product.name ||
-    siteSettings.meta_title ||
-    siteSettings.site_name;
+    `${product.name} – Buy Online | Jeewanom Ayurveda`;
 
   const descSource =
     product.meta_desc?.trim() ||
     product.description?.trim() ||
-    siteSettings.meta_desc ||
-    "";
+    `Buy ${product.name} online from Jeewanom Ayurveda. Authentic Ayurvedic product with pan-India delivery. ${siteSettings.meta_desc || ""}`;
 
   const description = truncateTo160(descSource);
+
+  const brandName = product.brand?.name ?? product.brand_name ?? "Jeewanom";
+  const keywords = [
+    product.name.toLowerCase(),
+    `buy ${product.name.toLowerCase()} online`,
+    `${product.name.toLowerCase()} price`,
+    `ayurvedic ${product.name.toLowerCase()}`,
+    brandName.toLowerCase(),
+    "jeewanom ayurveda",
+    "ayurvedic products India",
+  ];
 
   return {
     title,
     description,
+    keywords,
     openGraph: {
       title,
       description,

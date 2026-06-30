@@ -14,7 +14,6 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useCart } from "@/context/CartContext";
 import { formatINR } from "@/utils/store/formatPrice";
-import { buildCartOrderMessage, buildWhatsAppUrl } from "@/utils/store/whatsapp";
 
 type Props = { phone: string };
 
@@ -42,9 +41,6 @@ export default function CartSheet({ phone }: Props) {
     );
   }
 
-  const waMessage = buildCartOrderMessage(cart.items, totalFormatted);
-  const waHref = buildWhatsAppUrl(phone, waMessage);
-
   return (
     <div className="flex h-full flex-col">
       <div className="flex items-center justify-between">
@@ -56,8 +52,8 @@ export default function CartSheet({ phone }: Props) {
 
       <div className="flex-1 space-y-4 overflow-auto pr-2">
         {cart.items.map((item) => (
-          <div key={item.id} className="flex gap-3 rounded-2xl border bg-card p-3 shadow-soft">
-            <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-xl bg-muted">
+          <div key={item.id} className="flex gap-3 border-b border-border pb-4">
+            <div className="relative h-14 w-14 flex-shrink-0 overflow-hidden rounded-sm bg-muted">
               {item.image_url ? (
                 <Image
                   src={item.image_url}
@@ -68,7 +64,7 @@ export default function CartSheet({ phone }: Props) {
                   className="object-cover"
                 />
               ) : (
-                <div className="grid h-full w-full place-items-center bg-gradient-to-br from-blue-50 via-rose-50 to-amber-50 text-[10px] text-muted-foreground">
+                <div className="grid h-full w-full place-items-center bg-muted text-[10px] text-muted-foreground">
                   No image
                 </div>
               )}
@@ -137,16 +133,8 @@ export default function CartSheet({ phone }: Props) {
           <div className="text-base font-semibold">{totalFormatted}</div>
         </div>
 
-        <Button asChild className="w-full">
-          <Link href="/checkout">Pay with Razorpay</Link>
-        </Button>
-
-        <Button
-          type="button"
-          className="w-full bg-whatsapp text-white hover:opacity-95"
-          onClick={() => window.open(waHref, "_blank", "noreferrer")}
-        >
-          Order on WhatsApp
+        <Button asChild className="w-full rounded-full bg-primary text-white hover:bg-primary/90">
+          <Link href="/checkout">Order on WhatsApp</Link>
         </Button>
 
         <Button

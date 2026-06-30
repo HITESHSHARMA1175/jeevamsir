@@ -45,7 +45,8 @@ export async function generateMetadata({
   const cat = categories.find((c) => c.slug === slug);
   if (!cat) return await getSiteMetadata(undefined, `/category/${slug}`);
 
-  let title = `${cat.name} | Shop`;
+  let title = `${cat.name} – Ayurvedic ${cat.name} Products Online | Jeewanom`;
+  let description = `Shop authentic Ayurvedic ${cat.name.toLowerCase()} products online. Natural, herbal ${cat.name.toLowerCase()} solutions with trusted delivery across India.`;
   if (searchParams) {
     const sp = await searchParams;
     const subRaw = sp?.sub;
@@ -60,10 +61,13 @@ export async function generateMetadata({
           s.category_id === cat.id &&
           s.is_active,
       );
-      if (activeSub) title = `${activeSub.name} — ${cat.name} | Shop`;
+      if (activeSub) {
+        title = `${activeSub.name} – ${cat.name} Ayurvedic Products | Jeewanom`;
+        description = `Buy ${activeSub.name.toLowerCase()} from our ${cat.name.toLowerCase()} range. Authentic Ayurvedic products with pan-India delivery.`;
+      }
     }
   }
-  return await getSiteMetadata({ title }, `/category/${slug}`);
+  return await getSiteMetadata({ title, description, keywords: [`ayurvedic ${cat.name.toLowerCase()}`, `${cat.name.toLowerCase()} products online`, `herbal ${cat.name.toLowerCase()}`, `buy ${cat.name.toLowerCase()} India`, "jeewanom ayurveda"] }, `/category/${slug}`);
 }
 
 export default async function CategoryPage({

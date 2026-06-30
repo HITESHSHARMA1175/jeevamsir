@@ -12,13 +12,13 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import type { Product } from "@/types";
 
-type Props = { product: Product };
+type Props = { product: Product; className?: string };
 
 /**
  * AddToCartButton
- * Adds a product to cart and shows a brief “Added” state.
+ * Adds a product to cart and shows a brief "Added" state.
  */
-export default function AddToCartButton({ product }: Props) {
+export default function AddToCartButton({ product, className }: Props) {
   const cart = useCart();
   const [added, setAdded] = React.useState(false);
 
@@ -27,8 +27,8 @@ export default function AddToCartButton({ product }: Props) {
   return (
     <Button
       type="button"
-      variant="fk"
-      className="w-full"
+      variant="default"
+      className={`w-full rounded-full bg-primary text-white transition-colors duration-150 ease-out hover:bg-primary/90 ${className ?? ""}`}
       disabled={disabled}
       onClick={(e) => {
         // If the button is inside a Link-wrapped card, prevent navigation.
@@ -46,4 +46,3 @@ export default function AddToCartButton({ product }: Props) {
 }
 
 AddToCartButton.displayName = "AddToCartButton";
-

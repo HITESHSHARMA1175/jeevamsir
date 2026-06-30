@@ -39,10 +39,10 @@ export default function ProductFinder({ categories }: { categories: Category[] }
 
   return (
     <section className="container-pad">
-      <div className="rounded-[1rem] border border-[#eadfce] bg-[#f8f1e7] p-4 shadow-[0_14px_36px_rgba(80,43,43,0.1)] sm:p-6">
+      <div className="rounded-sm border border-border bg-white p-4 shadow-[var(--shadow-soft)] sm:p-6">
         <div className="space-y-4">
           <div>
-            <p className="ornate-kicker">Quick discovery</p>
+            <p className="section-kicker">Quick discovery</p>
             <p className="mt-1 text-base font-semibold text-slate-900">Find the right spiritual product</p>
           </div>
 
@@ -56,7 +56,7 @@ export default function ProductFinder({ categories }: { categories: Category[] }
                 id="category"
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
-                className="w-full rounded-[0.55rem] border border-[#dbc8ad] bg-white px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition-colors focus:border-[var(--brand-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--brand-primary)]"
+                className="w-full rounded-md border border-border bg-white px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition-colors duration-150 ease-out focus:border-[var(--brand-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--brand-primary)]"
               >
                 <option value="">Select Category</option>
                 {categories.map((cat) => (
@@ -76,7 +76,7 @@ export default function ProductFinder({ categories }: { categories: Category[] }
                 id="type"
                 value={selectedType}
                 onChange={(e) => setSelectedType(e.target.value)}
-                className="w-full rounded-[0.55rem] border border-[#dbc8ad] bg-white px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition-colors focus:border-[var(--brand-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--brand-primary)]"
+                className="w-full rounded-md border border-border bg-white px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition-colors duration-150 ease-out focus:border-[var(--brand-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--brand-primary)]"
               >
                 <option value="">Select Product Type</option>
                 {productTypes.map((type) => (
@@ -96,7 +96,7 @@ export default function ProductFinder({ categories }: { categories: Category[] }
                 id="price"
                 value={selectedPrice}
                 onChange={(e) => setSelectedPrice(e.target.value)}
-                className="w-full rounded-[0.55rem] border border-[#dbc8ad] bg-white px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition-colors focus:border-[var(--brand-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--brand-primary)]"
+                className="w-full rounded-md border border-border bg-white px-3 py-2.5 text-sm text-slate-900 placeholder-slate-400 transition-colors duration-150 ease-out focus:border-[var(--brand-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--brand-primary)]"
               >
                 <option value="">Select Price</option>
                 {priceRanges.map((range) => (
@@ -111,7 +111,7 @@ export default function ProductFinder({ categories }: { categories: Category[] }
             <div className="flex items-end">
               <button
                 onClick={handleSearch}
-                className="flex w-full items-center justify-center gap-2 rounded-[0.55rem] bg-[var(--brand-primary)] px-4 py-2.5 text-sm font-semibold text-white transition-all hover:bg-[var(--brand-primary-hover)] hover:shadow-lg active:scale-95"
+                className="flex w-full items-center justify-center gap-2 rounded-full bg-[var(--brand-primary)] px-4 py-2.5 text-sm font-semibold text-white transition-all duration-200 ease-out hover:bg-[var(--brand-primary-hover)] hover:shadow-lg active:scale-95"
               >
                 <Search className="h-4 w-4" />
                 <span className="hidden sm:inline">Search</span>

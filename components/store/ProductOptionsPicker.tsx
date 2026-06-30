@@ -72,10 +72,10 @@ export default function ProductOptionsPicker({ product, attributes }: Props) {
                     key={option}
                     type="button"
                     onClick={() => pick(group.label, option)}
-                    className={`min-w-12 rounded-sm border px-3 py-2 text-sm font-medium transition-colors ${
+                    className={`min-w-12 rounded-full border px-3 py-2 text-sm font-medium transition-colors duration-150 ease-out ${
                       active
-                        ? "border-blue-500 bg-blue-50 text-blue-700"
-                        : "border-slate-200 bg-white text-slate-700 hover:border-blue-200 hover:bg-blue-50/40"
+                        ? "border-primary bg-accent text-accent-foreground"
+                        : "border-border bg-white text-foreground hover:border-primary/50 hover:bg-accent/50"
                     }`}
                     aria-pressed={active}
                   >
@@ -92,8 +92,8 @@ export default function ProductOptionsPicker({ product, attributes }: Props) {
 
       <Button
         type="button"
-        variant="fk"
-        className="w-full"
+        variant="default"
+        className="w-full rounded-full bg-primary text-white hover:bg-primary/90"
         disabled={!product.in_stock}
         onClick={addToCart}
       >

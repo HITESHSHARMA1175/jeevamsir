@@ -54,10 +54,9 @@ export default function WhatsAppButton({
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-24 right-4 z-50 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-white shadow-lg transition-transform hover:scale-105 active:scale-95 md:bottom-6 md:right-6"
+      className="fixed bottom-24 right-5 z-50 grid h-14 w-14 place-items-center rounded-full bg-whatsapp text-white shadow-[var(--shadow-soft)] transition-transform duration-150 ease-out hover:scale-105 active:scale-95 md:bottom-6"
     >
-      <span className="absolute inset-0 animate-ping rounded-full bg-whatsapp opacity-20" />
-      <WhatsAppIcon className="relative h-7 w-7" />
+      <WhatsAppIcon className="h-7 w-7" />
     </Link>
   );
 }
