@@ -33,8 +33,8 @@ export default async function AdminLoginPage() {
         <div className="order-1 border-b border-blue-100 bg-gradient-to-br from-blue-900 via-blue-800 to-blue-900 p-3 sm:p-4 lg:order-2 lg:border-b-0 lg:border-l lg:p-5 flex flex-col items-center justify-center gap-4">
           <div className="w-full max-w-sm">
             <Image
-              src="/logo.png"
-              alt="ShopKart admin panel logo"
+              src="/BANNER JEEWANOM.png"
+              alt="Jeewanom Ayurveda admin panel"
               width={400}
               height={400}
               priority
@@ -43,10 +43,10 @@ export default async function AdminLoginPage() {
           </div>
           <div className="border border-white/15 bg-white/10 p-4 text-center text-white shadow-2xl backdrop-blur-md sm:p-5 rounded-sm">
             <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-blue-100 sm:text-xs">
-              Premium Admin Console
+              Admin Console
             </div>
             <div className="mt-2 text-lg font-semibold tracking-tight sm:text-2xl">
-              Shop more, save more
+              Jeewanom Ayurveda
             </div>
           </div>
         </div>
