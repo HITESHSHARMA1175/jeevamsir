@@ -198,17 +198,11 @@ export default async function Home({
         {!qLower && homepageSections.length === 0 && (
           <>
             {filteredFeatured.length > 0 && (
-              <section className="container-pad section-pad space-y-4">
-                <div>
-                  <h2 className="text-[var(--text-subheading)] font-semibold tracking-tight">
-                    Ayurveda picks
-                  </h2>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    Curated wellness essentials for daily balance
-                  </p>
-                </div>
-
-                <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+              <section className="container-pad section-pad space-y-3">
+                <h2 className="text-base font-semibold tracking-tight text-foreground sm:text-lg">
+                  Featured Products
+                </h2>
+                <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-3 sm:gap-3 lg:grid-cols-4">
                   {filteredFeatured.map((p, i) => (
                     <ProductCard key={p.id} product={p} priority={i < 4} />
                   ))}
